@@ -26,40 +26,34 @@ header .container {
 .header-nav {
   position: relative;
   font-weight: 500;
-  color: var(--secondary-text);
   letter-spacing: 0.02em;
-  margin-right: 50px;
+  color: var(--secondary-text);
   transition: color var(--duration) var(--timing);
-}
-.header-nav:hover,
-.header-nav:focus {
-  color: var(--accent);
 }
 .contact-list {
   display: flex;
   margin-left: auto;
 }
-.header-contact {
-  font-weight: 500;
-  letter-spacing: 0.02em;
-  margin-right: 50px;
-  transition: color var(--duration) var(--timing);
-}
-.header-contact:hover,
-.header-contact:focus {
-  color: var(--accent);
-}
 .contact-link {
   display: flex;
   align-items: center;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  transition: color var(--duration) var(--timing);
 }
 .header-icon {
   fill: currentColor;
   margin-right: 10px;
 }
-.header-nav:last-child,
-.header-contact:last-child {
-  margin-right: 0;
+nav li:not(:last-child),
+.contact-list li:not(:last-child) {
+  margin-right: 50px;
+}
+.header-nav:hover,
+.header-nav:focus,
+.contact-link:hover,
+.contact-link:focus {
+  color: var(--accent);
 }
 .current {
   color: var(--accent);
@@ -188,15 +182,17 @@ header .container {
   position: relative;
 }
 .about-desc {
+  display: flex;
   position: absolute;
   bottom: 0;
   left: 0;
   width: 100%;
+  height: 70px;
   font-weight: 700;
   text-align: center;
   text-transform: uppercase;
-  padding-top: 27px;
-  padding-bottom: 27px;
+  align-items: center;
+  justify-content: center;
   color: var(--main-white);
   background-color: rgba(47, 48, 58, 0.8);
 }
@@ -268,28 +264,26 @@ header .container {
 .clients-list li:not(:last-child) {
   margin-right: 30px;
 }
+.client-icon {
+  fill: currentColor;
+  vertical-align: middle;
+}
 .client-link {
   width: 170px;
   height: 92px;
-  border: 1px solid var(--main-icon-color);
-  border-radius: 4px;
   display: flex;
   justify-content: center;
   align-items: center;
-  transition: fill var(--duration) var(--timing),
-    border var(--duration) var(--timing);
+  border-radius: 4px;
+  border: 1px solid var(--main-icon-color);
+  color: var(--main-icon-color);
+  transition: border var(--duration) var(--timing),
+    color var(--duration) var(--timing);
 }
 .client-link:hover,
 .client-link:focus {
   border: 1px solid var(--accent);
-}
-.client-link:hover svg,
-.client-link:focus svg {
-  fill: var(--accent);
-}
-.client-icon {
-  fill: var(--main-icon-color);
-  vertical-align: middle;
+  color: var(--accent);
 }
 
 /*-------------FOOTER-------------*/
@@ -351,58 +345,6 @@ footer .network-icon {
 footer .network-icon:hover,
 footer .network-icon:focus {
   background-color: var(--accent);
-}
-
-/*-------------MODAL-------------*/
-.backdrop {
-  width: 100vw;
-  height: 100vh;
-  background-color: rgba(0, 0, 0, 0.2);
-  position: fixed;
-  top: 0;
-  transition: opacity var(--duration) var(--timing),
-    visibility var(--duration) var(--timing);
-}
-.is-hidden {
-  visibility: hidden;
-  opacity: 0;
-  pointer-events: none;
-}
-.backdrop.is-hidden .modal {
-  transform: translate(0) scale(0);
-}
-.modal {
-  width: 528px;
-  min-height: 300px;
-  background: var(--main-white);
-  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12), 0px 1px 1px rgba(0, 0, 0, 0.14),
-    0px 2px 1px rgba(0, 0, 0, 0.2);
-  border-radius: 4px;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%) scale(1);
-  transition: transform 500ms var(--timing);
-}
-.modal-close-btn {
-  width: 30px;
-  height: 30px;
-  border: 1px solid rgba(0, 0, 0, 0.1);
-  border-radius: 50%;
-  background-color: var(--main-white);
-  position: absolute;
-  top: 8px;
-  right: 8px;
-  cursor: pointer;
-  transition: border-color var(--duration) var(--timing);
-}
-.close-icon {
-  fill: #000;
-  transition: fill var(--duration) var(--timing);
-}
-.modal-close-btn:hover,
-.modal-close-btn:focus {
-  border-color: var(--accent);
 }
 
 /*-------------PROJECTS-------------*/
@@ -494,4 +436,57 @@ footer .network-icon:focus {
 .project-type {
   font-size: 16px;
   line-height: 1.88;
+}
+
+/*-------------MODAL-------------*/
+.backdrop {
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.2);
+  position: fixed;
+  top: 0;
+  transition: opacity var(--duration) var(--timing),
+    visibility var(--duration) var(--timing);
+}
+.is-hidden {
+  visibility: hidden;
+  opacity: 0;
+  pointer-events: none;
+}
+.backdrop.is-hidden .modal {
+  transform: translate(0) scale(0);
+}
+.modal {
+  width: 528px;
+  height: 581px;
+  background: var(--main-white);
+  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12), 0px 1px 1px rgba(0, 0, 0, 0.14),
+    0px 2px 1px rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(1);
+  transition: transform 500ms var(--timing);
+  padding: 40px;
+}
+.modal-close-btn {
+  width: 30px;
+  height: 30px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 50%;
+  background-color: var(--main-white);
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  cursor: pointer;
+  transition: border-color var(--duration) var(--timing);
+}
+.close-icon {
+  fill: #000;
+  transition: fill var(--duration) var(--timing);
+}
+.modal-close-btn:hover,
+.modal-close-btn:focus {
+  border-color: var(--accent);
 }
