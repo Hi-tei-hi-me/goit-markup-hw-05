@@ -1,7 +1,12 @@
 /*-------------HEADER-------------*/
 header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 99;
   padding-top: 24px;
   padding-bottom: 25px;
+  background-color: var(--main-white);
   border-bottom: 1px solid var(--header-border-color);
 }
 header .container {
@@ -62,7 +67,7 @@ nav li:not(:last-child),
   content: "";
   position: absolute;
   left: 0;
-  bottom: -30px;
+  bottom: -33px;
   width: 100%;
   height: 4px;
   border-radius: 2px;
@@ -402,6 +407,7 @@ footer .network-icon:focus {
 .project-link:hover .project-desc,
 .project-link:focus .project-desc {
   transform: translateY(0);
+  opacity: 1;
 }
 .project-wrap {
   position: relative;
@@ -417,8 +423,9 @@ footer .network-icon:focus {
   line-height: 1.56;
   color: var(--main-white);
   background-color: rgba(33, 150, 243, 0.9);
+  opacity: 0;
   transform: translateY(100%);
-  transition: transform 500ms var(--timing);
+  transition: transform 300ms var(--timing);
 }
 .project-caption {
   padding: 20px 24px;
@@ -445,30 +452,35 @@ footer .network-icon:focus {
   background-color: rgba(0, 0, 0, 0.2);
   position: fixed;
   top: 0;
+  opacity: 1;
+  visibility: visible;
   transition: opacity var(--duration) var(--timing),
     visibility var(--duration) var(--timing);
 }
 .is-hidden {
-  visibility: hidden;
   opacity: 0;
+  visibility: hidden;
   pointer-events: none;
 }
+.no-scroll {
+  overflow-y: hidden;
+}
 .backdrop.is-hidden .modal {
-  transform: translate(0) scale(0);
+  transform: translate(-50%, -50%) scale(0);
 }
 .modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
   width: 528px;
   height: 581px;
+  padding: 40px;
   background: var(--main-white);
   box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12), 0px 1px 1px rgba(0, 0, 0, 0.14),
     0px 2px 1px rgba(0, 0, 0, 0.2);
   border-radius: 4px;
-  position: absolute;
-  top: 50%;
-  left: 50%;
   transform: translate(-50%, -50%) scale(1);
-  transition: transform 500ms var(--timing);
-  padding: 40px;
+  transition: transform 500ms var(--timing) var(--duration);
 }
 .modal-close-btn {
   width: 30px;
@@ -482,11 +494,10 @@ footer .network-icon:focus {
   cursor: pointer;
   transition: border-color var(--duration) var(--timing);
 }
-.close-icon {
-  fill: #000;
-  transition: fill var(--duration) var(--timing);
-}
 .modal-close-btn:hover,
 .modal-close-btn:focus {
   border-color: var(--accent);
+}
+.close-icon {
+  fill: #000;
 }

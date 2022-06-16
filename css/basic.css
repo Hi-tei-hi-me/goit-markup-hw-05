@@ -14,6 +14,11 @@
   --duration: 250ms;
   --timing: cubic-bezier(0.4, 0, 0.2, 1);
 }
+*:focus-visible {
+  outline-color: var(--secondary-accent);
+  outline-style: dashed;
+  outline-width: 1px;
+}
 body {
   font-family: "Roboto", "Open Sans", sans-serif;
   color: var(--main-text);
@@ -21,6 +26,7 @@ body {
   font-size: 14px;
   line-height: 1.71;
   letter-spacing: 0.03em;
+  padding-top: 80px;
 }
 h1,
 h2,
